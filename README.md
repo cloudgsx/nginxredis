@@ -50,11 +50,7 @@ The first step is to build the image:
 
 ### Build
 ```docker
-docker build -t openbridge/nginx .
-```
-### Pull
-```docker
-docker pull openbridge/nginx:latest
+docker build -t nginxredis .
 ```
 
 ## Running
