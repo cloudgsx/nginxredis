@@ -1,0 +1,43 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: myappname
+  namespace: mynamespace
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: myappname
+  template:
+    metadata:
+      labels:
+        app: myappname
+    spec:
+      nodeSelector:
+        rol: my-node-tag
+      restartPolicy: Always
+      serviceAccountName: wp-sa
+      securityContext: {}
+      containers:
+        - name: myappname
+          image: 'myrepo/myimage:latest'
+          ports:
+            - containerPort: 80
+              protocol: TCP
+            - containerPort: 443
+              protocol: TCP
+          resources: {}
+          volumeMounts:
+            - name: datavol
+              mountPath: /DATA
+            - name: confvol
+              mountPath: /etc/nginx
+          imagePullPolicy: Always
+      serviceAccount: wp-sa
+      volumes:
+        - name: datavol
+          persistentVolumeClaim:
+            claimName: malditodata
+        - name: malditoconf
+          persistentVolumeClaim:
+            claimName: confvol

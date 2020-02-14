@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: myapp-svc
+  namespace: mynamespace
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 443
+  selector:
+    app: myappname
+  type: ClusterIP
