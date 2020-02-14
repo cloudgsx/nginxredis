@@ -11,6 +11,14 @@ As per the redis cache, it points to an external redis post in K8s which has a s
 
 Finally, the standard nginx.conf file has all the necessary parametes to support a wordpress installation.
 
+# Why does the run script have a loop?
+```
+while :; do echo 'Press <CTRL+C> to exit.'; sleep 1; done
+```
+
+This is for testing purposes. This will allow you to play around and kill fpm or nginx without having to restart your K8s pod.
+You can remove it and customize as needed.
+
 # NGINX Accelerated including Reverse Proxy, Redis, CDN, Lets Encrypt and much more!
 This is a Docker image creates a high performance, optimized image for NGINX. Deliver sites and applications with performance, reliability, security, and scale. This NGINX server offers advanced performance, web and mobile acceleration, security controls, application monitoring, and management.
 
